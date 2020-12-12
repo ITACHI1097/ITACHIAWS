@@ -206,11 +206,11 @@ def subir(request):
 
             # df.columns = [c.lower() for c in df.columns]
             from sqlalchemy import create_engine
-            engine = create_engine('postgresql://postgres:1234@localhost:5432/icfes-1') #revisar para coneccion en amazon web service
+            engine = create_engine('postgresql://postgres:daniel7895421@database-1.cvduozi7iy4l.us-east-1.rds.amazonaws.com:5432/icfes-1') #revisar para coneccion en amazon web service
 
             df.to_sql("table_temp", engine)
             try:
-                conn = psycopg2.connect(database='icfes-1', user='postgres', password='1234', host='localhost', port=5432)
+                conn = psycopg2.connect(database='icfes-1', user='postgres', password='daniel7895421', host='database-1.cvduozi7iy4l.us-east-1.rds.amazonaws.com', port=5432)
                 cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
                 # LIMPIEZA DE BD
                 sql = """UPDATE table_temp SET "ESTU_ESTUDIANTE"='ESTUDIANTE' WHERE "ESTU_ESTUDIANTE" IS NULL;
@@ -598,7 +598,7 @@ def subir(request):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin','usuario'])
 def gestionHtml(request):
-    conn = psycopg2.connect(database='icfes-1', user='postgres', password='1234', host='localhost', port=5432)
+    conn = psycopg2.connect(database='icfes-1', user='postgres', password='daniel7895421', host='database-1.cvduozi7iy4l.us-east-1.rds.amazonaws.com', port=5432)
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     sql = "select distinct(cole_nombre_sede) from fact_saber11,dim_lugares,dim_instituciones where fact_saber11.id_lugar=dim_lugares.id_lugar and fact_saber11.id_institucion=dim_instituciones.id_institucion;"
     cur.execute(sql)
@@ -607,7 +607,7 @@ def gestionHtml(request):
     conn.close()
     inst = row
 
-    conn = psycopg2.connect(database='icfes-1', user='postgres', password='1234', host='localhost', port=5432)
+    conn = psycopg2.connect(database='icfes-1', user='postgres', password='daniel7895421', host='database-1.cvduozi7iy4l.us-east-1.rds.amazonaws.com', port=5432)
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     sql = "select distinct(cole_mcpio_ubicacion) from dim_lugares;"
     cur.execute(sql)
@@ -616,7 +616,7 @@ def gestionHtml(request):
     conn.close()
     muni = row
 
-    conn = psycopg2.connect(database='icfes-1', user='postgres', password='1234', host='localhost', port=5432)
+    conn = psycopg2.connect(database='icfes-1', user='postgres', password='daniel7895421', host='database-1.cvduozi7iy4l.us-east-1.rds.amazonaws.com', port=5432)
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     sql = "select distinct(ano) from dim_tiempo order by ano;"
     cur.execute(sql)
@@ -708,7 +708,7 @@ def Gestion(request):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['admin','usuario'])
 def gestionCHtml(request):
-    conn = psycopg2.connect(database='icfes-1', user='postgres', password='1234', host='localhost', port=5432)
+    conn = psycopg2.connect(database='icfes-1', user='postgres', password='daniel7895421', host='database-1.cvduozi7iy4l.us-east-1.rds.amazonaws.com', port=5432)
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     sql = "select distinct(cole_nombre_sede) from fact_saber11,dim_lugares,dim_instituciones where fact_saber11.id_lugar=dim_lugares.id_lugar and fact_saber11.id_institucion=dim_instituciones.id_institucion;"
     cur.execute(sql)
@@ -717,7 +717,7 @@ def gestionCHtml(request):
     conn.close()
     inst = row
 
-    conn = psycopg2.connect(database='icfes-1', user='postgres', password='1234', host='localhost', port=5432)
+    conn = psycopg2.connect(database='icfes-1', user='postgres', password='daniel7895421', host='database-1.cvduozi7iy4l.us-east-1.rds.amazonaws.com', port=5432)
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     sql = "select distinct(cole_mcpio_ubicacion) from dim_lugares;"
     cur.execute(sql)
@@ -726,7 +726,7 @@ def gestionCHtml(request):
     conn.close()
     muni = row
 
-    conn = psycopg2.connect(database='icfes-1', user='postgres', password='1234', host='localhost', port=5432)
+    conn = psycopg2.connect(database='icfes-1', user='postgres', password='daniel7895421', host='database-1.cvduozi7iy4l.us-east-1.rds.amazonaws.com', port=5432)
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     sql = "select distinct(ano) from dim_tiempo order by ano;"
     cur.execute(sql)
@@ -735,7 +735,7 @@ def gestionCHtml(request):
     conn.close()
     ano = row
 
-    conn = psycopg2.connect(database='icfes-1', user='postgres', password='1234', host='localhost', port=5432)
+    conn = psycopg2.connect(database='icfes-1', user='postgres', password='daniel7895421', host='database-1.cvduozi7iy4l.us-east-1.rds.amazonaws.com', port=5432)
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     sql = "select distinct(periodo) from dim_tiempo;"
     cur.execute(sql)
@@ -1768,7 +1768,7 @@ def grafic_principal(request):
     # for entry in result1:
     #     conta = int(entry['id_estudiante__Count'])
 
-    conn = psycopg2.connect(database='icfes-1', user='postgres', password='1234', host='localhost', port=5432)
+    conn = psycopg2.connect(database='icfes-1', user='postgres', password='daniel7895421', host='database-1.cvduozi7iy4l.us-east-1.rds.amazonaws.com', port=5432)
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     vari = 50
     sql = "select count(id_estudiante) from fact_saber11"
