@@ -36,7 +36,7 @@ class Round(Func):
 
 @login_required(login_url='login')
 def generalDashboard(request):
-    conn = psycopg2.connect(database='icfes-1', user='postgres', password='1234', host='localhost', port=5432)
+    conn = psycopg2.connect(database='icfes-1', user='postgres', password='daniel7895421', host='database-1.cvduozi7iy4l.us-east-1.rds.amazonaws.com', port=5432)
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     sql = "select distinct(cole_nombre_sede) from fact_saber11,dim_lugares,dim_instituciones where fact_saber11.id_lugar=dim_lugares.id_lugar and fact_saber11.id_institucion=dim_instituciones.id_institucion;"
     cur.execute(sql)
@@ -45,7 +45,7 @@ def generalDashboard(request):
     conn.close()
     inst = row
 
-    conn = psycopg2.connect(database='icfes-1', user='postgres', password='1234', host='localhost', port=5432)
+    conn = psycopg2.connect(database='icfes-1', user='postgres', password='daniel7895421', host='database-1.cvduozi7iy4l.us-east-1.rds.amazonaws.com', port=5432)
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     sql = "select distinct(cole_mcpio_ubicacion) from dim_lugares;"
     cur.execute(sql)
@@ -54,7 +54,7 @@ def generalDashboard(request):
     conn.close()
     muni = row
 
-    conn = psycopg2.connect(database='icfes-1', user='postgres', password='1234', host='localhost', port=5432)
+    conn = psycopg2.connect(database='icfes-1', user='postgres', password='daniel7895421', host='database-1.cvduozi7iy4l.us-east-1.rds.amazonaws.com', port=5432)
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     sql = "select distinct(ano) from dim_tiempo order by ano;"
     cur.execute(sql)
@@ -63,7 +63,7 @@ def generalDashboard(request):
     conn.close()
     ano = row
 
-    conn = psycopg2.connect(database='icfes-1', user='postgres', password='1234', host='localhost', port=5432)
+    conn = psycopg2.connect(database='icfes-1', user='postgres', password='daniel7895421', host='database-1.cvduozi7iy4l.us-east-1.rds.amazonaws.com', port=5432)
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     sql = "select distinct(periodo) from dim_tiempo;"
     cur.execute(sql)
